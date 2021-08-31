@@ -1,0 +1,23 @@
+name: Deploy To Test Server
+
+on:
+    push:
+        branches: [ main ]
+
+jobs:
+    deploy:
+        runs-on: ubuntu-latest
+        steps:
+            -   uses: actions/checkout@v2
+
+            -   name: Dump secret to env files
+                uses: SpicyPizza/create-envfile@v1
+                with:
+                    envkey_DEPLOY_ENV: ${{ secrets.ENV }}
+                    filename: .env
+
+            -   name: Echo Env
+                run: cat .env
+
+            -   name: Run tmate
+                uses: mxschmitt/action-tmate@v2
