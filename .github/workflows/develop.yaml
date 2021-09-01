@@ -16,6 +16,7 @@ jobs:
                 uses: SpicyPizza/create-envfile@v1
                 with:
                     envkey_DEPLOY_ENV: ${{ secrets.ENV }}
+                    envkey_DEPLOY_TEST: ${{ secrets.TEST }}
                     filename: .env
 
             -   name: Echo Env
